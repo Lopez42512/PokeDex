@@ -20,35 +20,65 @@ app.get("/", function (req, res) {
 
 app.get("/pokedex:region", function (req, res) {
   const region = req.params.region.slice(1);
-  let pokemon = []
-  async function getPokemon() {
+  let pokemon = [];
+  async function getPokedex() {
     try {
       // offset=151&
       await fetch(`https://pokeapi.co/api/v2/pokemon?${region}`)
         .then((res) => res.json())
         .then((data) => {
-            if(pokemon[0] === undefined) {
-                pokemon = data
-            }
-            
+          if (pokemon[0] === undefined) {
+            pokemon = data;
+          }
+
           io.on("connection", (socket) => {
             socket.emit("pokedex", { region: pokemon, limit: region });
-            pokemon = []
+            pokemon = [];
           });
         })
-        .then(() => res.sendFile(__dirname + "/html/pokedex.html"))
+        .then(() => res.sendFile(__dirname + "/html/pokedex.html"));
     } catch (e) {
       console.log(e);
     }
   }
-  getPokemon();
-
-  
+  getPokedex();
 });
 // app.get('/pokemon')
 app.post("/pokedex", function (req, res) {
   const region = req.body.region;
   res.redirect("/pokedex:" + region);
+});
+
+app.get("/pokemon:pokemon", function (req, res) {
+  const pokemon = req.params.pokemon.slice(1);
+  let pokeData = [];
+  console.log(pokemon);
+  async function getPokemon() {
+    try {
+      await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (pokeData[0] === undefined) {
+            pokeData = data;
+          }
+
+          io.on("connection", (socket) => {
+            socket.emit("pokemon", { pokemon: pokeData});
+            pokeData = [];
+          });
+        })
+        .then(() => res.sendFile(__dirname + "/html/pokemon.html"))
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  getPokemon();
+  
+});
+
+app.post("/pokemon", function (req, res) {
+  const pokemon = req.body.pokemon;
+  res.redirect("/pokemon:" + pokemon);
 });
 
 http.listen(process.env.PORT || 3000, function (req, res) {
