@@ -9,5 +9,12 @@
 // }
 // getPokemon()
 // how to get a poke img
-{/* <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt=""> */}
+{
+  /* <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt=""> */
+}
 
+var socket = io();
+socket.on("news", function (data) {
+  // listen to news event raised by the server
+  console.log(data);
+});
