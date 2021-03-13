@@ -24,7 +24,7 @@ app.get("/pokedex:region", function (req, res) {
   async function getPokemon() {
     try {
       // offset=151&
-      await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+      await fetch(`https://pokeapi.co/api/v2/pokemon?${region}`)
         .then((res) => res.json())
         .then((data) => {
             if(pokemon[0] === undefined) {
@@ -32,7 +32,7 @@ app.get("/pokedex:region", function (req, res) {
             }
             
           io.on("connection", (socket) => {
-            socket.emit("pokedex", { region: pokemon });
+            socket.emit("pokedex", { region: pokemon, limit: region });
             pokemon = []
           });
         })
