@@ -18,6 +18,13 @@ h1 {
     margin: 0;
 }
 
+h3 {
+    font-family: 'Chicle', cursive;
+    /* color: yellow;
+    text-shadow: 3px 3px blue; */
+    margin-top: 10px; 
+}
+
 .cards {
     padding: 0;
     margin: 0 auto;
@@ -35,6 +42,11 @@ a {
 
 a:hover {
     color: white;
+}
+
+.progress {
+    margin-top: 10px;
+    height: 20px;
 }
 
 @media only screen and (max-width: 600px) {
