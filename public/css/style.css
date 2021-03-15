@@ -49,6 +49,19 @@ a:hover {
     height: 20px;
 }
 
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Chicle', cursive;
+    background-color: red;
+    /* font-size: 8em; */
+    color: yellow;
+    text-shadow: 3px 3px blue;
+    margin: 0;
+    
+}
+
 @media only screen and (max-width: 600px) {
     h1 {
         font-size: 5em;

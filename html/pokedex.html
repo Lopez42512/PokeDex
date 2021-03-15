@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Chicle&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/7d2b110a1f.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
   </head>
@@ -22,11 +26,108 @@
     <section id="header">
       <h1>Gotta Catch em All</h1>
     </section>
+    <section style="text-align: left" id="header">
+      <div class="dropdown">
+        <button
+          class="btn btn-danger dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Menu
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="/">Home</a></li>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="limit=151"
+              class="btn btn-light"
+            >
+              Kanto's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=151&limit=100"
+              class="btn btn-light"
+            >
+              Johto's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=251&limit=135"
+              class="btn btn-light"
+            >
+              Hoenn's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=386&limit=108"
+              class="btn btn-light"
+            >
+              Sinnoh's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=494&limit=155"
+              class="btn btn-light"
+            >
+              Unova's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=649&limit=72"
+              class="btn btn-light"
+            >
+              Kalos's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=721&limit=88"
+              class="btn btn-light"
+            >
+              Explore Alola's PokeDex
+            </button>
+          </form>
+          <form action="/pokedex" method="POST">
+            <button
+              type="submit"
+              name="region"
+              value="offset=809&limit=89"
+              class="btn btn-light"
+            >
+              Explore Galar's PokeDex
+            </button>
+          </form>
+        </ul>
+      </div>
+    </section>
     <section id="body">
       <div class="container-fluid">
         <div id="pokemonContainer" class="row"></div>
       </div>
     </section>
+    <section id="footer"><i class="far fa-copyright"></i>Ismael Lopez</section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
