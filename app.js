@@ -52,6 +52,7 @@ app.post("/pokedex", function (req, res) {
 app.get("/pokemon:pokemon", function (req, res) {
   const pokemon = req.params.pokemon.slice(1);
   let pokeData = [];
+  let pokeEntry = ''
   console.log(pokemon);
   async function getPokemon() {
     try {
@@ -61,13 +62,17 @@ app.get("/pokemon:pokemon", function (req, res) {
           if (pokeData[0] === undefined) {
             pokeData = data;
           }
-
+          fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`)
+          .then((resp) => resp.json())
+          .then((data) => pokeEntry = data.flavor_text_entries[0].flavor_text)
           io.on("connection", (socket) => {
-            socket.emit("pokemon", { pokemon: pokeData});
+            socket.emit("pokemon", { pokemon: pokeData, entry: pokeEntry});
             pokeData = [];
+            pokeEntry = ''
           });
         })
         .then(() => res.sendFile(__dirname + "/html/pokemon.html"))
+    
     } catch (e) {
       console.log(e);
     }
