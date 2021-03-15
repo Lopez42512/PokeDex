@@ -23,9 +23,12 @@ socket.on("pokemon", function (data) {
     });
 
     // add the poke entry to the summary part of the page
-    if(data.entry !== ''){
-        document.getElementById('pokeSummary').innerHTML = data.entry
-    }
+      if (data.entry !== "") {
+        console.log("not empty");
+        document.getElementById("pokeSummary").innerHTML = data.entry;
+      } else {
+        document.getElementById("pokeSummary").innerHTML = "No Entry for this Pokemon";
+      }
     
     //  add buttons to go to the previous or next pokemon
     document.getElementById("prevPoke").setAttribute("value", pokeData.id - 1);
@@ -36,9 +39,9 @@ socket.on("pokemon", function (data) {
         pokeData.id - 1
       }.png`
     );
-    prevImage.style.height = '50px'
+    prevImage.style.height = "50px";
     document.getElementById("prevPoke").appendChild(prevImage);
-    
+
     document
       .getElementById("nextPoke")
       .setAttribute("value", parseInt(pokeData.id + 1));
